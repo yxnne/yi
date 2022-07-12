@@ -2,6 +2,9 @@ import { createContext } from './context'
 import {
   line, circle, rect, ring, path, text,
 } from './shape'
+import {
+  save, restore, translate, rotate, scale,
+} from './transform'
 
 export function createRenderer(width, height) {
   const context = createContext(width, height)
@@ -15,5 +18,10 @@ export function createRenderer(width, height) {
     ring: (options) => ring(context, options), // 绘制圆环
     node: () => context.node,
     group: () => context.group,
+    save: () => save(context),
+    restore: () => restore(context),
+    translate: (...params) => translate(context, ...params),
+    rotate: (...params) => rotate(context, ...params),
+    scale: (...params) => scale(context, ...params),
   }
 }
